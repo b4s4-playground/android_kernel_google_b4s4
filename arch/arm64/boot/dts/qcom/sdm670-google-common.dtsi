@@ -1035,3 +1035,8 @@
 
 	status = "okay";
 };
+
+&venus {
+	firmware-name = "qcom/sdm670/sargo/venus.mbn";
+	status = "okay";
+};
