@@ -11,7 +11,10 @@
 
 / {
 	model = "Google Pixel 3a";
-	compatible = "google,sargo", "qcom,sdm670";
+	compatible = "google,sargo", "google,b4s4-sdm670", "qcom,sdm670";
+	/* ABL dtbo matching: SDM670 platform, S4 board, PVT revision */
+	qcom,msm-id = <336 0>;
+	qcom,board-id = <0x41e05 0>;
 };
 
 &battery {

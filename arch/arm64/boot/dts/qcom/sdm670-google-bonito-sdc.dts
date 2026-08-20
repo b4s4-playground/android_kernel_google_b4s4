@@ -12,7 +12,10 @@
 
 / {
 	model = "Google Pixel 3a XL (with SDC panel)";
-	compatible = "google,bonito-sdc", "google,bonito", "qcom,sdm670";
+	compatible = "google,bonito-sdc", "google,bonito", "google,b4s4-sdm670", "qcom,sdm670";
+	/* ABL dtbo matching: SDM670 platform, B4 board, PVT revision */
+	qcom,msm-id = <336 0>;
+	qcom,board-id = <0x31e05 0>;
 };
 
 &battery {
