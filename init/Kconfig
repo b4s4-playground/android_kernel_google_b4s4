@@ -154,6 +154,12 @@ config CC_HAS_COUNTED_BY
 	# supported since gcc 15.1.0
 	# https://gcc.gnu.org/bugzilla/show_bug.cgi?id=108896
 	default y if CC_IS_GCC && GCC_VERSION >= 150100
+	# uplift: this Clang 22.1.8 (llvm-project main snapshot) accepts the
+	# __counted_by attribute but rejects __typeof__ on counted-by arrays
+	# ("not yet supported"), which breaks struct_size()/flex_array_size()
+	# (e.g. include/linux/ring_buffer.h pulled into asm-offsets.c via
+	# kvm_host.h). Force it off so __counted_by compiles to a no-op.
+	depends on n
 
 config CC_HAS_COUNTED_BY_PTR
 	bool
