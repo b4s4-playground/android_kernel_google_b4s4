@@ -1,0 +1,42 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Pixel 3a XL (bonito, board B4) personality overlay for the b4s4 base dtb.
+ *
+ * Root properties are read by ABL to match this overlay against the
+ * board's SMEM-reported IDs (qcom,msm-id + qcom,board-id), then the
+ * fragments below are applied onto the base dtb. Mirrors stock dtbo.
+ *
+ * Note: bonito ships with two panel vendors (Samsung sofef00 / Tianma
+ * nt37700f) sharing the same board-id; this overlay defaults to sofef00.
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	model = "Google Pixel 3a XL";
+	compatible = "google,bonito", "google,b4s4-sdm670", "qcom,sdm670";
+	qcom,msm-id = <336 0>;
+	qcom,board-id = <0x31e05 0>;	/* B4 PVT */
+};
+
+&battery {
+	charge-full-design-microamp-hours = <3700000>;
+};
+
+&drv2624 {
+	ti,odclamp-voltage = <106>; /* 2.1 Vrms */
+};
+
+&framebuffer {
+	height = <2160>;
+};
+
+&panel {
+	compatible = "samsung,sofef00-bonito";
+};
+
+&rmi4_f12 {
+	touchscreen-x-mm = <69>;
+	touchscreen-y-mm = <137>;
+};
