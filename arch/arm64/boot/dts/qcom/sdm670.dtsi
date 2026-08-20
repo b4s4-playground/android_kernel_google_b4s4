@@ -320,6 +320,19 @@
 		scm {
 			compatible = "qcom,scm-sdm670", "qcom,scm";
 		};
+
+		android {
+			compatible = "android,firmware";
+
+			/*
+			 * Tell AOSP first-stage ueventd which platform device
+			 * holds the boot partitions, so it creates the generic
+			 * /dev/block/by-name/<part> symlinks.  Must match the
+			 * kernel's sysfs platform path for the eMMC host:
+			 *   /sys/devices/platform/soc@0/7c4000.mmc/...
+			 */
+			boot_devices = "soc@0/7c4000.mmc";
+		};
 	};
 
 	memory@80000000 {
