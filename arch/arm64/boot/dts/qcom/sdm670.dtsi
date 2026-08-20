@@ -2438,7 +2438,14 @@
 
 			status = "disabled";
 
-			usb_1_dwc3: usb@a600000 {
+			/*
+			 * Node name intentionally "dwc3" (not "usb") so the
+			 * platform device / UDC is named "a600000.dwc3", matching
+			 * what Android's vendor init writes to the configfs
+			 * gadget UDC attribute.  Mainline would otherwise expose
+			 * "a600000.usb" and the gadget would never bind (no adb).
+			 */
+			usb_1_dwc3: dwc3@a600000 {
 				compatible = "snps,dwc3";
 				reg = <0 0x0a600000 0 0xcd00>;
 				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
