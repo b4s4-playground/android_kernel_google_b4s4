@@ -1,0 +1,46 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Unified base device tree for Google Pixel 3a (sargo) and Pixel 3a XL
+ * (bonito) — the "b4s4" family (b4 = bonito board, s4 = sargo board).
+ *
+ * The board personality is applied by the bootloader (ABL) from the dtbo
+ * partition (sdm670-google-sargo.dtbo / sdm670-google-bonito-*.dtbo),
+ * matched via qcom,msm-id + qcom,board-id — the same scheme stock uses.
+ *
+ * Property defaults below match sargo, so this base dtb alone boots a
+ * Pixel 3a (with display) even with an empty/mismatched dtbo partition.
+ */
+
+/dts-v1/;
+
+#include "sdm670-google-common.dtsi"
+
+/ {
+	model = "Google Pixel 3a/XL (b4s4 base)";
+	compatible = "google,b4s4-sdm670", "qcom,sdm670";
+	qcom,msm-id = <336 0>;
+	qcom,board-id = <0 0>;
+};
+
+/* sargo defaults (standalone-bootable fallback on Pixel 3a) */
+
+&battery {
+	charge-full-design-microamp-hours = <3000000>;
+};
+
+&drv2624 {
+	ti,odclamp-voltage = <93>; /* 1.8 Vrms */
+};
+
+&framebuffer {
+	height = <2220>;
+};
+
+&panel {
+	compatible = "samsung,s6e3fa7-ams559nk06";
+};
+
+&rmi4_f12 {
+	touchscreen-x-mm = <62>;
+	touchscreen-y-mm = <127>;
+};
