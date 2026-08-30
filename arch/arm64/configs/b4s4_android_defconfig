@@ -1519,3 +1519,5 @@ CONFIG_MEMTEST=y
 
 # uplift: bigger console font
 CONFIG_FONT_TER16x32=y
+CONFIG_DM_INIT=y
+CONFIG_DM_LINEAR=y
