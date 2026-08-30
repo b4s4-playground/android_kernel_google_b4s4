@@ -903,7 +903,7 @@
 };
 
 &gpu_zap_shader {
-	firmware-name = "qcom/sdm670/sargo/a615_zap.mbn";
+	firmware-name = "qcom/sdm670/a615_zap.mbn";
 };
 
 &i2c3 {
