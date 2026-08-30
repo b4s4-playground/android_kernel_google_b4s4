@@ -93,13 +93,29 @@
 		#address-cells = <2>;
 		#size-cells = <2>;
 
-		ramoops@97c00000 {
+		debug_info_mem: debug-info@a1800000 {
+			reg = <0 0xa1800000 0 0x10000>;
+			no-map;
+		};
+
+		ramoops_mem: ramoops@a1810000 {
 			compatible = "ramoops";
-			reg = <0 0x97c00000 0 0x200000>;
-			record-size = <0x40000>;
+			reg = <0 0xa1810000 0 0x200000>;
+			record-size = <0x20000>;
 			console-size = <0x100000>;
-			pmsg-size = <0x40000>;
-			ecc-size = <16>;
+			pmsg-size = <0x80000>;
+			max-reason = <5>;
+			no-map;
+		};
+
+		alt_ramoops_mem: alt-ramoops@a1a10000 {
+			reg = <0 0xa1a10000 0 0x200000>;
+			no-map;
+		};
+
+		ramoops_meta_mem: ramoops-meta@a1c10000 {
+			reg = <0 0xa1c10000 0 0x1000>;
+			no-map;
 		};
 
 		mpss_region: mpss@8b000000 {
@@ -149,12 +165,6 @@
 
 		fb_mem: framebuffer-region@9c000000 {
 			reg = <0 0x9c000000 0 0x2400000>;
-			no-map;
-		};
-
-		/* Also includes ramoops regions */
-		debug_info_mem: debug-info@a1800000 {
-			reg = <0 0xa1800000 0 0x411000>;
 			no-map;
 		};
 
